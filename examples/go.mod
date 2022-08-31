@@ -2,7 +2,7 @@ module github.com/reedom/copygen/examples
 
 go 1.18
 
-require github.com/reedom/copygen v0.0.0-20220831094913-cc2e44922633
+require github.com/reedom/copygen v0.0.0-20220831125405-762242e0081b
 
 require (
 	github.com/fatih/structtag v1.2.0 // indirect

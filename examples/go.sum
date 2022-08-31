@@ -1,7 +1,7 @@
 github.com/fatih/structtag v1.2.0 h1:/OdNE99OxoI/PqaW/SuSK9uxxT3f/tcSZgon/ssNSx4=
 github.com/fatih/structtag v1.2.0/go.mod h1:mBJUNpUnHmRKrKlQQlmCrh5PuhftFbNv8Ys4/aAZl94=
-github.com/reedom/copygen v0.0.0-20220831094913-cc2e44922633 h1:RGZFcFkNH2fAIOUU6wZkIUz3yZi+/vPTJzxQktFd+hI=
-github.com/reedom/copygen v0.0.0-20220831094913-cc2e44922633/go.mod h1:Es/5Qk7uFyr0fcvSffDkC6TcMNtxATkVkODUcJuHgHo=
+github.com/reedom/copygen v0.0.0-20220831125405-762242e0081b h1:xceciIR/B6HKmigPqN+mohx80hkX6av0t3rsQfsAy4A=
+github.com/reedom/copygen v0.0.0-20220831125405-762242e0081b/go.mod h1:Es/5Qk7uFyr0fcvSffDkC6TcMNtxATkVkODUcJuHgHo=
 github.com/switchupcb/yaegi v0.10.2 h1:HH1T6fB1KdWIb/rP0/XyUz1Nq/M9Ur2hU/BV26fiJls=
 github.com/switchupcb/yaegi v0.10.2/go.mod h1:UuAL+fmE+jnbb88UX4Y923UC1AtDkYJ1MhGc4Y+RKbk=
 github.com/yuin/goldmark v1.4.0/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
