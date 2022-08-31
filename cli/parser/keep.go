@@ -5,7 +5,7 @@ import (
 	"go/ast"
 	"strings"
 
-	"github.com/switchupcb/copygen/cli/parser/options"
+	"github.com/reedom/copygen/cli/parser/options"
 )
 
 const convertOptionSplitAmount = 3

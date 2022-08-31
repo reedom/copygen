@@ -2,8 +2,8 @@
 package copygen
 
 import (
-	"github.com/switchupcb/copygen/examples/automatch/domain"
-	"github.com/switchupcb/copygen/examples/automatch/models"
+	"github.com/reedom/copygen/examples/automatch/domain"
+	"github.com/reedom/copygen/examples/automatch/models"
 )
 
 // Copygen defines the functions that will be generated.

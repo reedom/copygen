@@ -4,9 +4,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/switchupcb/copygen/cli"
-	"github.com/switchupcb/copygen/cli/config"
-	"github.com/switchupcb/copygen/cli/parser"
+	"github.com/reedom/copygen/cli"
+	"github.com/reedom/copygen/cli/config"
+	"github.com/reedom/copygen/cli/parser"
 )
 
 // TestGeneratorOptions tests whether the Generator Options are parsed from the setup file correctly.

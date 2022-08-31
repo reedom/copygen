@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/switchupcb/copygen/cli"
+	"github.com/reedom/copygen/cli"
 )
 
 // main is run from /copygen.

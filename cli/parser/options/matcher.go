@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/switchupcb/copygen/cli/models"
+	"github.com/reedom/copygen/cli/models"
 )
 
 // IsMatchOptionCategory determines if a given string is a match option category.

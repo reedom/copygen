@@ -1,6 +1,6 @@
 package complex
 
-import "github.com/switchupcb/copygen/examples/_tests/multi/external"
+import "github.com/reedom/copygen/examples/_tests/multi/external"
 
 // Collection represents a type that holds collection field types.
 type Collection struct {

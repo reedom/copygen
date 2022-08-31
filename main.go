@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/switchupcb/copygen/cli"
+	"github.com/reedom/copygen/cli"
 )
 
 func main() {

@@ -5,8 +5,8 @@
 package copygen
 
 import (
-	service "github.com/switchupcb/copygen/examples/main/domain"
-	data "github.com/switchupcb/copygen/examples/main/models"
+	service "github.com/reedom/copygen/examples/main/domain"
+	data "github.com/reedom/copygen/examples/main/models"
 )
 
 // ModelsToDomain copies a *data.Account, *data.User to a *service.Account.

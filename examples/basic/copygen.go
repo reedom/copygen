@@ -5,8 +5,8 @@
 package copygen
 
 import (
-	"github.com/switchupcb/copygen/examples/basic/domain"
-	"github.com/switchupcb/copygen/examples/basic/models"
+	"github.com/reedom/copygen/examples/basic/domain"
+	"github.com/reedom/copygen/examples/basic/models"
 )
 
 // Basic copies a *models.Account, string to a *domain.Account.

@@ -9,8 +9,8 @@ import (
 	"go/printer"
 	"go/token"
 
-	"github.com/switchupcb/copygen/cli/models"
-	"github.com/switchupcb/copygen/cli/parser/options"
+	"github.com/reedom/copygen/cli/models"
+	"github.com/reedom/copygen/cli/parser/options"
 	"golang.org/x/tools/go/packages"
 )
 

@@ -6,7 +6,7 @@ package template
 import (
 	"strings"
 
-	"github.com/switchupcb/copygen/cli/models"
+	"github.com/reedom/copygen/cli/models"
 )
 
 // Generate generates code.

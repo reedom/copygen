@@ -2,9 +2,9 @@
 package copygen
 
 import (
-	"github.com/switchupcb/copygen/examples/_tests/cyclic/domain"
-	"github.com/switchupcb/copygen/examples/_tests/cyclic/duplicate"
-	"github.com/switchupcb/copygen/examples/_tests/cyclic/models"
+	"github.com/reedom/copygen/examples/_tests/cyclic/domain"
+	"github.com/reedom/copygen/examples/_tests/cyclic/duplicate"
+	"github.com/reedom/copygen/examples/_tests/cyclic/models"
 )
 
 // Copygen defines the functions that will be generated.

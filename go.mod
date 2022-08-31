@@ -1,4 +1,4 @@
-module github.com/switchupcb/copygen
+module github.com/reedom/copygen
 
 go 1.18
 

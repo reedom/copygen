@@ -1,8 +1,8 @@
-module github.com/switchupcb/copygen/examples
+module github.com/reedom/copygen/examples
 
 go 1.18
 
-require github.com/switchupcb/copygen v0.3.7
+require github.com/reedom/copygen v0.4.0r
 
 require (
 	github.com/fatih/structtag v1.2.0 // indirect

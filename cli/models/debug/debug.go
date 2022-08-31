@@ -3,7 +3,7 @@ package debug
 import (
 	"fmt"
 
-	"github.com/switchupcb/copygen/cli/models"
+	"github.com/reedom/copygen/cli/models"
 )
 
 // PrintGeneratorFields prints all of a generator's function's fields to standard output.

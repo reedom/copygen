@@ -62,8 +62,8 @@ package copygen
 import (
 	c "strconv"
 
-	"github.com/switchupcb/copygen/examples/tmpl/domain"
-	"github.com/switchupcb/copygen/examples/tmpl/models"
+	"github.com/reedom/copygen/examples/tmpl/domain"
+	"github.com/reedom/copygen/examples/tmpl/models"
 )
 
 // Copygen defines the functions that will be generated.
@@ -96,8 +96,8 @@ package copygen
 import (
 	c "strconv"
 
-	"github.com/switchupcb/copygen/examples/main/domain"
-	"github.com/switchupcb/copygen/examples/main/models"
+	"github.com/reedom/copygen/examples/main/domain"
+	"github.com/reedom/copygen/examples/main/models"
 )
 
 /* Define the function and field this converter is applied to using regex. */

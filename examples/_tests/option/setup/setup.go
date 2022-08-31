@@ -2,8 +2,8 @@
 package copygen
 
 import (
-	"github.com/switchupcb/copygen/examples/map/domain"
-	"github.com/switchupcb/copygen/examples/map/models"
+	"github.com/reedom/copygen/examples/map/domain"
+	"github.com/reedom/copygen/examples/map/models"
 )
 
 // Copygen defines the functions that will be generated.

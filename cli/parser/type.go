@@ -5,7 +5,7 @@ import (
 	"go/types"
 	"strconv"
 
-	"github.com/switchupcb/copygen/cli/models"
+	"github.com/reedom/copygen/cli/models"
 )
 
 type parsedTypes struct {

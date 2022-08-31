@@ -4,8 +4,8 @@ package domain
 import (
 	c "strconv"
 
-	domain "github.com/switchupcb/copygen/examples/_tests/import"
-	"github.com/switchupcb/copygen/examples/_tests/import/models"
+	domain "github.com/reedom/copygen/examples/_tests/import"
+	"github.com/reedom/copygen/examples/_tests/import/models"
 )
 
 // Copygen defines the functions that will be generated.

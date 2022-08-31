@@ -88,8 +88,8 @@ package copygen
 import (
 	c "strconv"
 
-	"github.com/switchupcb/copygen/examples/map/domain"
-	"github.com/switchupcb/copygen/examples/map/models"
+	"github.com/reedom/copygen/examples/map/domain"
+	"github.com/reedom/copygen/examples/map/models"
 )
 
 /* Define the function and field this converter is applied to using regex. */

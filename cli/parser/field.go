@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/fatih/structtag"
-	"github.com/switchupcb/copygen/cli/models"
+	"github.com/reedom/copygen/cli/models"
 )
 
 // parseField parses a types.Type into a *models.Field recursively.

@@ -2,8 +2,8 @@
 package copygen
 
 import (
-	"github.com/switchupcb/copygen/examples/_tests/multi/complex"
-	"github.com/switchupcb/copygen/examples/_tests/multi/external"
+	"github.com/reedom/copygen/examples/_tests/multi/complex"
+	"github.com/reedom/copygen/examples/_tests/multi/external"
 )
 
 // Placeholder represents a basic type.

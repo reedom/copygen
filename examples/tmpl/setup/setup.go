@@ -4,8 +4,8 @@ package copygen
 import (
 	c "strconv"
 
-	"github.com/switchupcb/copygen/examples/tmpl/domain"
-	"github.com/switchupcb/copygen/examples/tmpl/models"
+	"github.com/reedom/copygen/examples/tmpl/domain"
+	"github.com/reedom/copygen/examples/tmpl/models"
 )
 
 // Copygen defines the functions that will be generated.

@@ -12,7 +12,7 @@ The `Run()` function operates in a similar manner to using `copygen -yml path` i
 
 ### Define the Environment
 
-Use an [Environment](https://pkg.go.dev/github.com/switchupcb/copygen/cli#Environment) object to specify the `.yml` Copygen will use.
+Use an [Environment](https://pkg.go.dev/github.com/reedom/copygen/cli#Environment) object to specify the `.yml` Copygen will use.
 
 ```go
 env := cli.Environment{
@@ -65,11 +65,11 @@ if err != nil {
 return code, nil
 ```
 
-Copygen's standard functions (`Parse`, `Match`, `Generate`) accept a [`model.Generator`](https://pkg.go.dev/github.com/switchupcb/copygen/cli/models#Generator). This allows the implementation of any configuration method (including `LoadYML`) with a Copygen standard function, as long as that method returns a valid `model.Generator`. In a similar manner, custom `Parse`, `Match`, and `Generate` functions can be used with Copygen standard functions interchangeably.
+Copygen's standard functions (`Parse`, `Match`, `Generate`) accept a [`model.Generator`](https://pkg.go.dev/github.com/reedom/copygen/cli/models#Generator). This allows the implementation of any configuration method (including `LoadYML`) with a Copygen standard function, as long as that method returns a valid `model.Generator`. In a similar manner, custom `Parse`, `Match`, and `Generate` functions can be used with Copygen standard functions interchangeably.
 
 ### Configuration
 
-The purpose of the config is to configure the `setup`, `output`, and `template` filepaths of a `Generator`; along with any `GeneratorOptions`. For more more information, read the [documentation](https://pkg.go.dev/github.com/switchupcb/copygen/cli/config#section-documentation).
+The purpose of the config is to configure the `setup`, `output`, and `template` filepaths of a `Generator`; along with any `GeneratorOptions`. For more more information, read the [documentation](https://pkg.go.dev/github.com/reedom/copygen/cli/config#section-documentation).
 
 ### Parser
 
@@ -78,23 +78,23 @@ The purpose of the parser is to determine:
 1. The code that is **kept** _(`Generator.Keep`)_ from the `setup` file _(placed above generated code in the `output` file)_.
 2. Define the `Generator.Functions` (which contain fields).
 
-For more information, read the [documentation](https://pkg.go.dev/github.com/switchupcb/copygen/cli/parser#section-documentation).
+For more information, read the [documentation](https://pkg.go.dev/github.com/reedom/copygen/cli/parser#section-documentation).
 
 #### Parser Options
 
-Read the [documentation](https://pkg.go.dev/github.com/switchupcb/copygen/cli/parser/options#section-documentation).
+Read the [documentation](https://pkg.go.dev/github.com/reedom/copygen/cli/parser/options#section-documentation).
 
 ### Matcher
 
-Read the [documentation](https://pkg.go.dev/github.com/switchupcb/copygen/cli/matcher#section-documentation).
+Read the [documentation](https://pkg.go.dev/github.com/reedom/copygen/cli/matcher#section-documentation).
 
 ### Generator
 
-The generator package exports three methods of code generation by default. The easiest way to customize the generator is by using [templates](../../README.md#templates). For more information, read the [documentation](https://pkg.go.dev/github.com/switchupcb/copygen/cli/generator#section-documentation).
+The generator package exports three methods of code generation by default. The easiest way to customize the generator is by using [templates](../../README.md#templates). For more information, read the [documentation](https://pkg.go.dev/github.com/reedom/copygen/cli/generator#section-documentation).
 
 ## Debug
 
-The [`debug.go`](https://pkg.go.dev/github.com/switchupcb/copygen/cli/models/debug#pkg-functions) file provides helper functions during debugging. To view an Abstract Syntax Tree, use a [GoAst Viewer](https://yuroyoro.github.io/goast-viewer/index.html).
+The [`debug.go`](https://pkg.go.dev/github.com/reedom/copygen/cli/models/debug#pkg-functions) file provides helper functions during debugging. To view an Abstract Syntax Tree, use a [GoAst Viewer](https://yuroyoro.github.io/goast-viewer/index.html).
 
 ### PrintFieldGraph
 

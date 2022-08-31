@@ -7,7 +7,7 @@ package domain
 import (
 	c "strconv"
 
-	"github.com/switchupcb/copygen/examples/_tests/import/models"
+	"github.com/reedom/copygen/examples/_tests/import/models"
 )
 
 /* Define the function and field this converter is applied to using regex. */

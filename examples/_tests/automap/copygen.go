@@ -5,8 +5,8 @@
 package copygen
 
 import (
-	"github.com/switchupcb/copygen/examples/automatch/domain"
-	"github.com/switchupcb/copygen/examples/automatch/models"
+	"github.com/reedom/copygen/examples/automatch/domain"
+	"github.com/reedom/copygen/examples/automatch/models"
 )
 
 // ModelsToDomain copies a *models.Account, *models.User to a *domain.Account.

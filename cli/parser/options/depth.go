@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/switchupcb/copygen/cli/models"
+	"github.com/reedom/copygen/cli/models"
 )
 
 const (

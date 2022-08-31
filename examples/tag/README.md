@@ -76,8 +76,8 @@ _Use pointers to avoid allocations._
 package copygen
 
 import (
-	"github.com/switchupcb/copygen/examples/tag/domain"
-	"github.com/switchupcb/copygen/examples/tag/models"
+	"github.com/reedom/copygen/examples/tag/domain"
+	"github.com/reedom/copygen/examples/tag/models"
 )
 
 // ModelsToDomain copies a *models.Account, *models.User to a *domain.Account.
