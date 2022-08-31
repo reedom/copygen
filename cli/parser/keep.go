@@ -3,6 +3,7 @@ package parser
 import (
 	"fmt"
 	"go/ast"
+	"regexp"
 	"strings"
 
 	"github.com/switchupcb/copygen/cli/parser/options"
@@ -41,6 +42,15 @@ func (p *Parser) Keep(astFile *ast.File) error {
 
 			// remove convert option ast.Comments.
 			trash = append(trash, comments...)
+		}
+	}
+
+	// also trash comments that match against the specific patterns.
+	for _, fileCommentGroup := range astFile.Comments {
+		for _, comment := range fileCommentGroup.List {
+			if p.shouldSkip(comment.Text) {
+				trash = append(trash, comment)
+			}
 		}
 	}
 
@@ -125,4 +135,11 @@ func (p *Parser) assignConvertOptions(x *ast.FuncDecl) ([]*ast.Comment, error) {
 	})
 
 	return convertComments, assignErr
+}
+
+var reSkip = regexp.MustCompile(`^//go:(generate|build (ignore|exclude))\b`)
+
+// shouldSkip determines whether the generator should strip the comment from the result code.
+func (p *Parser) shouldSkip(comment string) bool {
+	return reSkip.MatchString(comment)
 }
