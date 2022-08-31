@@ -1,5 +1,5 @@
-// Generator should strip either "//go:build ignore" or "go:build exclude" line.
-//go:build ignore
+// Generator should strip "//go:build copygen" line.
+//go:build copygen
 
 // Package copygen contains the setup information for copygen generated code.
 package copygen
