@@ -113,7 +113,7 @@ func Parse(gen *models.Generator) error {
 	}
 
 	// Analyze a new `type Copygen Interface` to create models.Function and models.Field objects.
-	cfg := &packages.Config{Mode: parserLoadMode}
+	cfg := &packages.Config{Mode: parserLoadMode, BuildFlags: []string{"-tags", "copygen"}}
 	p.Pkgs, err = packages.Load(cfg, "file="+gen.Setpath)
 	if err != nil {
 		return fmt.Errorf("an error occurred while loading the packages for types.\n%w", err)

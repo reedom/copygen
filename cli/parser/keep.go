@@ -137,7 +137,7 @@ func (p *Parser) assignConvertOptions(x *ast.FuncDecl) ([]*ast.Comment, error) {
 	return convertComments, assignErr
 }
 
-var reSkip = regexp.MustCompile(`^//go:(generate|build (ignore|exclude))\b`)
+var reSkip = regexp.MustCompile(`^//go:(generate|build copygen)\b`)
 
 // shouldSkip determines whether the generator should strip the comment from the result code.
 func (p *Parser) shouldSkip(comment string) bool {
