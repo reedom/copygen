@@ -14,15 +14,15 @@
 {{ .Keep| bytesToString -}}
 {{range $functionKey, $function := .Functions}}
 // {{$function.Name}} copies a {{template "JoinFields" $function.From}} to a {{template "JoinFields" $function.To}}.
-func {{$function.Name}}({{template "JoinParameters" $function.To}}, {{template "JoinParameters" $function.From}}) {
+func {{$function.Name}}({{template "JoinParameters" $function.To}}, {{template "JoinParameters" $function.From}}) {{if $function.Options.Error}}(err error){{end}} {
 	{{- range $typeKey, $toType := $function.To}}
 	// {{$toType.Name}} fields
 	{{- range $fieldKey, $toField := $toType.Field.AllFields nil nil -}}
 		{{- if $toField.From }}
-	{{$toField.FullVariableName ""}} = {{""}}
-			{{- with $fromField := $toField.From -}}
-				{{- if ne $fromField.Options.Convert "" -}}
-					{{$fromField.Options.Convert}}({{$fromField.FullVariableName ""}})
+			{{- with $fromField := $toField.From}}
+				{{$toField.FullVariableName ""}}{{if $fromField.Options.Convert.Error}}, err {{end}}= {{""}}
+				{{- if ne $fromField.Options.Convert.Ident "" -}}
+					{{$fromField.Options.Convert.Ident}}({{$fromField.FullVariableName ""}})
 				{{- else -}}
 					{{- if eq $toField.FullDefinition $fromField.FullDefinition -}}
 						{{$fromField.FullVariableName ""}}
@@ -36,4 +36,5 @@ func {{$function.Name}}({{template "JoinParameters" $function.To}}, {{template "
 		{{- end -}}
 	{{- end}}
 	{{end}}}
+	{{if $function.Options.Error}}return{{end}}
 {{end}}
