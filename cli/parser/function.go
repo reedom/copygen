@@ -51,6 +51,7 @@ func (p *Parser) parseFunctions(copygen *ast.InterfaceType) ([]models.Function, 
 			Options: models.FunctionOptions{
 				Custom: customoptionmap,
 				Manual: manual,
+				Error:  parsed.retError,
 			},
 		}
 
