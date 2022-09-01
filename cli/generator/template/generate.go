@@ -61,7 +61,11 @@ func generateComment(function *models.Function) string {
 
 // generateSignature generates a function's signature.
 func generateSignature(function *models.Function) string {
-	return "func " + function.Name + "(" + generateParameters(function) + ") {"
+	ret := ""
+	if function.Options.Error {
+		ret = "error"
+	}
+	return "func " + function.Name + "(" + generateParameters(function) + ")" + ret + "{"
 }
 
 // generateParameters generates the parameters of a function.
@@ -128,5 +132,8 @@ func generateAssignment(toType models.Type) string {
 
 // generateReturn generates a return statement for the function.
 func generateReturn(function *models.Function) string {
+	if function.Options.Error {
+		return "\nreturn nil\n}"
+	}
 	return "}"
 }
