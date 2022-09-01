@@ -113,10 +113,9 @@ package copygen
 
 /* Copygen defines the functions that will be generated. */
 type Copygen interface {
-  // custom see table below for options
+  // custom see table below for options.
   ModelsToDomain(*models.Account, *models.User) *domain.Account
-  // to notify a conversion error, place 'error' at the end of return values
-  // (c.f. 'coverter' option)
+  // To create a function that returns error, place "error" at the end of return values.
   ModelsToDomain(*models.Account, *models.User) (*domain.Account, error)
 }
 ```
@@ -150,12 +149,16 @@ func Itoa(i int) string {
 }
 ```
 
-To notice any conversion error, a) specify `error` as the third parameter of `convert` option, and b) return `error` as the last returning value. To receive it correctly, also the caller function must have `error` at the end of its return values.
+To notify any conversion error, just return `error` as the second returning value. To receive it correctly, also the caller function must have `error` at the end of its return values.
 ```go
-// convert .* models.User.UserID error
-// Atoi is equivalent to ParseInt(s, 10, 0), converted to type int.
-func Atoi(s string) (int, error) {
-	return c.Atoi(s)
+/* The paring converter function can return an error value. */
+// convert .* models.User.UserID
+// Itoa converts an integer to an ascii value.
+func Itoa(i int) (string, error) {
+	if i < 1 {
+		return "", fmt.Errorf("invalid id")
+	}
+	return c.Itoa(i), nil
 }
 ```
 
