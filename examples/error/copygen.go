@@ -13,16 +13,19 @@ import (
 
 /* Define the function and field this converter is applied to using regex. */
 // Itoa converts an integer to an ascii value.
-func Itoa(i int) string {
-	return c.Itoa(i)
+func Itoa(i int) (string, error) {
+	return c.Itoa(i), nil
 }
 
 // ModelsToDomain copies a *models.Account, *models.User to a *domain.Account.
-func ModelsToDomain(tA *domain.Account, fA *models.Account, fU *models.User) error {
+func ModelsToDomain(tA *domain.Account, fA *models.Account, fU *models.User) (err error) {
 	// *domain.Account fields
 	tA.ID = fA.ID
-	tA.UserID = Itoa(fU.UserID)
+	tA.UserID, err = Itoa(fU.UserID)
+	if err != nil {
+		return
+	}
 	tA.Name = fA.Name
 
-	return nil
+	return
 }
