@@ -8,6 +8,8 @@ import (
 	"github.com/switchupcb/copygen/cli/parser/options"
 )
 
+const convertOptionSplitAmount = 3
+
 // Keep removes ast.Nodes from an ast.File that will be kept in a generated output file.
 func (p *Parser) Keep(astFile *ast.File) error {
 	var trash []*ast.Comment
@@ -103,11 +105,11 @@ func (p *Parser) assignConvertOptions(x *ast.FuncDecl) ([]*ast.Comment, error) {
 			splitcomments := strings.Fields(text[2:])
 
 			// determine if the comment is a convert option.
-			if options.AcceptableFieldCount(len(splitcomments) - 1) {
+			if len(splitcomments) == convertOptionSplitAmount {
 				category := splitcomments[0]
 				value := strings.Join(splitcomments[1:], " ")
 				if category == options.CategoryConvert {
-					option, err := options.ParseConvert(value, x.Name.Name)
+					option, err := options.ParseConvert(value, x.Name.Name, x.Type)
 					if err != nil {
 						assignErr = err
 						return false
