@@ -18,6 +18,12 @@ func PrintGeneratorFields(gen *models.Generator) {
 
 // PrintFunctionFields prints all of a function's fields to standard output.
 func PrintFunctionFields(function *models.Function) {
+	spec := ""
+	if function.Options.Error {
+		spec = ", returns error"
+	}
+	fmt.Printf("[Function %v%v]\n", function.Name, spec)
+
 	for i := 0; i < len(function.From); i++ {
 		fmt.Println(function.From[i])
 		PrintFieldGraph(function.From[i].Field, "\t", nil)
