@@ -57,7 +57,7 @@ func automatch(toField, fromField *models.Field) {
 		((toField.FullDefinition() == fromField.FullDefinition() ||
 			toField.FullDefinition()[1:] == fromField.FullDefinition() ||
 			toField.FullDefinition() == fromField.FullDefinition()[1:]) ||
-			fromField.Options.Convert != "") {
+			!fromField.Options.Convert.IsEmpty()) {
 		fromField.To = toField
 		toField.From = fromField
 

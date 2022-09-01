@@ -52,7 +52,7 @@ type Field struct {
 // FieldOptions represent options for a Field.
 type FieldOptions struct {
 	// The function the field is converted with (as a parameter).
-	Convert string
+	Convert ConvertOption
 
 	// The field to map this field to, if any.
 	Map string
@@ -68,6 +68,18 @@ type FieldOptions struct {
 
 	// Whether the field should be deepcopied.
 	Deepcopy bool
+}
+
+type ConvertOption struct {
+	// The converter function name.
+	Ident string
+
+	// Whether the converter also returns an error.
+	Error bool
+}
+
+func (c ConvertOption) IsEmpty() bool {
+	return c.Ident == ""
 }
 
 // Deepcopy returns a new field with copied properties (excluding Parent, To, and From fields).

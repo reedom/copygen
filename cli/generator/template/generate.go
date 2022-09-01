@@ -63,7 +63,7 @@ func generateComment(function *models.Function) string {
 func generateSignature(function *models.Function) string {
 	ret := ""
 	if function.Options.Error {
-		ret = "error"
+		ret = "(err error)"
 	}
 	return "func " + function.Name + "(" + generateParameters(function) + ")" + ret + "{"
 }
@@ -109,11 +109,18 @@ func generateAssignment(toType models.Type) string {
 
 	for _, toField := range toType.Field.AllFields(nil, nil) {
 		if toField.From != nil {
-			assign.WriteString(toField.FullVariableName("") + " = ")
-
 			fromField := toField.From
-			if fromField.Options.Convert != "" {
-				assign.WriteString(fromField.Options.Convert + "(" + fromField.FullVariableName("") + ")\n")
+			errVal := ""
+			if fromField.Options.Convert.Error {
+				errVal = ", err"
+			}
+			assign.WriteString(toField.FullVariableName("") + errVal + " = ")
+
+			if !fromField.Options.Convert.IsEmpty() {
+				assign.WriteString(fromField.Options.Convert.Ident + "(" + fromField.FullVariableName("") + ")\n")
+				if fromField.Options.Convert.Error {
+					assign.WriteString("if err != nil {\nreturn\n}\n")
+				}
 			} else {
 				switch {
 				case toField.FullDefinition() == fromField.FullDefinition():
@@ -133,7 +140,7 @@ func generateAssignment(toType models.Type) string {
 // generateReturn generates a return statement for the function.
 func generateReturn(function *models.Function) string {
 	if function.Options.Error {
-		return "\nreturn nil\n}"
+		return "\nreturn\n}"
 	}
 	return "}"
 }
