@@ -10,7 +10,7 @@ import (
 )
 
 // Generator should strip "//go:generate line.
-//go:generate go run github.com/switchupcb/copygen -yml setup.yml
+//go:generate go run github.com/reedom/copygen -yml setup.yml
 
 // Copygen defines the functions that will be generated.
 type Copygen interface {
