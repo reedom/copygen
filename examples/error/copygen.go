@@ -5,15 +5,19 @@
 package copygen
 
 import (
+	"fmt"
 	c "strconv"
 
 	"github.com/reedom/copygen/examples/error/domain"
 	"github.com/reedom/copygen/examples/error/models"
 )
 
-/* Define the function and field this converter is applied to using regex. */
+/* The paring converter function can return an error value. */
 // Itoa converts an integer to an ascii value.
 func Itoa(i int) (string, error) {
+	if i < 1 {
+		return "", fmt.Errorf("invalid id")
+	}
 	return c.Itoa(i), nil
 }
 

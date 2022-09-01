@@ -48,7 +48,7 @@ generated:
   output: ../copygen.go
 
   # Define the optional custom templates used to generate the file (.go, .tmpl supported).
-  template: ../template/generate.go
+  # template: ./generate.go
 
 # Define custom options (which are passed to generator options) for customization.
 custom:
