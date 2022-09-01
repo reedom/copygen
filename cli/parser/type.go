@@ -11,6 +11,7 @@ import (
 type parsedTypes struct {
 	fromTypes []models.Type
 	toTypes   []models.Type
+	retError  bool
 }
 
 // parseTypes parses a types.Func's parameters for from-types and results for to-types.
@@ -26,6 +27,11 @@ func parseTypes(method *types.Func) (parsedTypes, error) {
 	setVariableNames(result.fromTypes, "f")
 
 	result.toTypes = parseTypeField(signature.Results())
+	// Treat if the last output parameter is [error].
+	if 0 < len(result.toTypes) && result.toTypes[len(result.toTypes)-1].Name() == "error" {
+		result.retError = true
+		result.toTypes = result.toTypes[0 : len(result.toTypes)-1]
+	}
 	setVariableNames(result.toTypes, "t")
 
 	return result, nil

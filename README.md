@@ -30,7 +30,7 @@ Each example has a **README**.
 | [map](examples/map/)             | Uses the manual map feature.             |
 | [tag](examples/tag/)             | Uses the manual tag feature.             |
 | deepcopy _(Roadmap)_             | Uses the deepcopy option.                |
-| [error](examples/error/)         | Uses `.go` templates to return an error. |
+| [error](examples/error/)         | `error` aware code example.              |
 | [tmpl](examples/tmpl/)           | Uses `.tmpl` templates.                  |
 | [program](examples/program/)     | Uses Copygen programmatically.           |
 
@@ -115,6 +115,9 @@ package copygen
 type Copygen interface {
   // custom see table below for options
   ModelsToDomain(*models.Account, *models.User) *domain.Account
+  // to notify a conversion error, place 'error' at the end of return values
+  // (c.f. 'coverter' option)
+  ModelsToDomain(*models.Account, *models.User) (*domain.Account, error)
 }
 ```
 
@@ -144,6 +147,15 @@ In certain cases, you may want to specify a how a specific type or field is copi
 // Itoa converts an integer to an ascii value.
 func Itoa(i int) string {
 	return c.Itoa(i)
+}
+```
+
+To notice any conversion error, a) specify `error` as the third parameter of `convert` option, and b) return `error` as the last returning value. To receive it correctly, also the caller function must have `error` at the end of its return values.
+```go
+// convert .* models.User.UserID error
+// Atoi is equivalent to ParseInt(s, 10, 0), converted to type int.
+func Atoi(s string) (int, error) {
+	return c.Atoi(s)
 }
 ```
 

@@ -9,8 +9,6 @@ import (
 	"github.com/reedom/copygen/cli/parser/options"
 )
 
-const convertOptionSplitAmount = 3
-
 // Keep removes ast.Nodes from an ast.File that will be kept in a generated output file.
 func (p *Parser) Keep(astFile *ast.File) error {
 	var trash []*ast.Comment
@@ -115,7 +113,7 @@ func (p *Parser) assignConvertOptions(x *ast.FuncDecl) ([]*ast.Comment, error) {
 			splitcomments := strings.Fields(text[2:])
 
 			// determine if the comment is a convert option.
-			if len(splitcomments) == convertOptionSplitAmount {
+			if options.AcceptableFieldCount(len(splitcomments) - 1) {
 				category := splitcomments[0]
 				value := strings.Join(splitcomments[1:], " ")
 				if category == options.CategoryConvert {
