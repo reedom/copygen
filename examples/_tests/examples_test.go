@@ -95,6 +95,11 @@ var (
 			ymlpath:  "_tests/multi/setup/setup.yml",
 			wantpath: "_tests/multi/copygen.go",
 		},
+		{
+			name:     "preprocess",
+			ymlpath:  "_tests/preprocess/setup/setup.yml",
+			wantpath: "_tests/preprocess/copygen.go",
+		},
 	}
 )
 

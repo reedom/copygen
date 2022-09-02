@@ -40,6 +40,12 @@ func NewFieldOption(category, text string) (*Option, error) {
 	case CategoryDepth:
 		option, err = ParseDepth(text)
 
+	case CategoryPreProcess:
+		option, err = ParsePreProcess(text)
+
+	case CategoryPostProcess:
+		option, err = ParsePostProcess(text)
+
 	default:
 		option = &Option{
 			Category: CategoryCustom,
