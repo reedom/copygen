@@ -29,7 +29,9 @@ func Function(function *models.Function) string {
 	var fn strings.Builder
 	fn.WriteString(generateComment(function) + "\n")
 	fn.WriteString(generateSignature(function) + "\n")
+	fn.WriteString(generateFuncCall(function, function.Options.PreProcess, false))
 	fn.WriteString(generateBody(function))
+	fn.WriteString(generateFuncCall(function, function.Options.PostProcess, true))
 	fn.WriteString(generateReturn(function))
 	return fn.String()
 }
@@ -135,6 +137,44 @@ func generateAssignment(toType models.Type) string {
 	}
 
 	return assign.String()
+}
+
+// generatePreprocess may generate a function call.
+func generateFuncCall(function *models.Function, ident string, last bool) string {
+	if ident == "" {
+		return ""
+	}
+	var builder strings.Builder
+
+	if function.Options.Error {
+		builder.WriteString("err = ")
+	}
+	builder.WriteString(ident)
+	builder.WriteString("(")
+	builder.WriteString(generateFuncCallParameters(function))
+	builder.WriteString(")\n")
+	if !last && function.Options.Error {
+		builder.WriteString("if err != nil {\nreturn\n}\n")
+	}
+	return builder.String()
+}
+
+// generateFuncCallParameters generates the parameters of a function.
+func generateFuncCallParameters(function *models.Function) string {
+	var parameters strings.Builder
+	for _, toType := range function.To {
+		parameters.WriteString(toType.Field.VariableName)
+		parameters.WriteString(", ")
+	}
+
+	for i, fromType := range function.From {
+		parameters.WriteString(fromType.Field.VariableName)
+		if i < len(function.From)-1 {
+			parameters.WriteString(", ")
+		}
+	}
+
+	return parameters.String()
 }
 
 // generateReturn generates a return statement for the function.

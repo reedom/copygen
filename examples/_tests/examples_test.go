@@ -100,6 +100,11 @@ var (
 			ymlpath:  "_tests/strip/setup/setup.yml",
 			wantpath: "_tests/strip/copygen.go",
 		},
+		{
+			name:     "preprocess",
+			ymlpath:  "_tests/preprocess/setup/setup.yml",
+			wantpath: "_tests/preprocess/copygen.go",
+		},
 	}
 )
 

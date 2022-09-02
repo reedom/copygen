@@ -11,10 +11,35 @@
 	{{- end -}}
 {{end -}}
 
+{{- define "JoinFuncCallParameters"}}
+    {{- range $key, $Type := . -}}
+		{{- if ne $key 0}}, {{end}}
+		{{- $Type.Field.VariableName}}
+	{{- end -}}
+{{end -}}
+
+{{- define "PreProcess"}}
+{{- if ne .Options.PreProcess ""}}
+	{{if .Options.Error}}err = {{end}}{{.Options.PreProcess}}({{template "JoinFuncCallParameters" .To}}, {{template "JoinFuncCallParameters" .From}})
+	{{- if .Options.Error}}
+	if err != nil {
+		return
+	}
+    {{- end -}}
+{{- end -}}
+{{end -}}
+
+{{- define "PostProcess"}}
+{{- if ne .Options.PostProcess ""}}
+	{{if .Options.Error}}err = {{end}}{{.Options.PostProcess}}({{template "JoinFuncCallParameters" .To}}, {{template "JoinFuncCallParameters" .From}})
+{{- end -}}
+{{- end -}}
+
 {{ .Keep| bytesToString -}}
 {{range $functionKey, $function := .Functions}}
 // {{$function.Name}} copies a {{template "JoinFields" $function.From}} to a {{template "JoinFields" $function.To}}.
 func {{$function.Name}}({{template "JoinParameters" $function.To}}, {{template "JoinParameters" $function.From}}) {{if $function.Options.Error}}(err error){{end}} {
+	{{- template "PreProcess" $function}}
 	{{- range $typeKey, $toType := $function.To}}
 	// {{$toType.Name}} fields
 	{{- range $fieldKey, $toField := $toType.Field.AllFields nil nil -}}
@@ -35,6 +60,9 @@ func {{$function.Name}}({{template "JoinParameters" $function.To}}, {{template "
 			{{- end -}}
 		{{- end -}}
 	{{- end}}
+	{{- template "PostProcess" $function}}
+	{{- if $function.Options.Error}}
+
+	return{{end}}
 	{{end}}}
-	{{if $function.Options.Error}}return{{end}}
 {{end}}

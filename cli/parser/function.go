@@ -23,7 +23,7 @@ func (p *Parser) parseFunctions(copygen *ast.InterfaceType) ([]models.Function, 
 		method := p.Config.SetupPkg.TypesInfo.Defs[copygen.Methods.List[i].Names[0]]
 
 		// create models.Type objects.
-		fieldoptions, manual := getNodeOptions(copygen.Methods.List[i], p.Options.CommentOptionMap)
+		fieldoptions, manual, preProcess, postProcess := getNodeOptions(copygen.Methods.List[i], p.Options.CommentOptionMap)
 		fieldoptions = append(fieldoptions, p.Options.ConvertOptions...)
 		parsed, err := parseTypes(method.(*types.Func))
 		if err != nil {
@@ -49,9 +49,11 @@ func (p *Parser) parseFunctions(copygen *ast.InterfaceType) ([]models.Function, 
 			To:   parsed.toTypes,
 			From: parsed.fromTypes,
 			Options: models.FunctionOptions{
-				Custom: customoptionmap,
-				Manual: manual,
-				Error:  parsed.retError,
+				Custom:      customoptionmap,
+				Manual:      manual,
+				Error:       parsed.retError,
+				PreProcess:  preProcess,
+				PostProcess: postProcess,
 			},
 		}
 
@@ -63,9 +65,8 @@ func (p *Parser) parseFunctions(copygen *ast.InterfaceType) ([]models.Function, 
 
 // getNodeOptions gets an ast.Node options from its comments.
 // To reduce overhead, it also returns whether a manual matcher is used.
-func getNodeOptions(x ast.Node, commentoptionmap map[string]*options.Option) ([]*options.Option, bool) {
-	nodeOptions := make([]*options.Option, 0, len(commentoptionmap))
-	var manual bool
+func getNodeOptions(x ast.Node, commentoptionmap map[string]*options.Option) (nodeOptions []*options.Option, manual bool, preProcess, postProcess string) {
+	nodeOptions = make([]*options.Option, 0, len(commentoptionmap))
 
 	ast.Inspect(x, func(node ast.Node) bool {
 		commentGroup, ok := node.(*ast.CommentGroup)
@@ -80,6 +81,10 @@ func getNodeOptions(x ast.Node, commentoptionmap map[string]*options.Option) ([]
 				// specifying a match option disables automatching by default.
 				if options.IsMatchOptionCategory(commentoptionmap[comment.Text].Category) {
 					manual = true
+				} else if commentoptionmap[comment.Text].Category == options.CategoryPreProcess {
+					preProcess = commentoptionmap[comment.Text].Value.(string)
+				} else if commentoptionmap[comment.Text].Category == options.CategoryPostProcess {
+					postProcess = commentoptionmap[comment.Text].Value.(string)
 				}
 			}
 		}
@@ -87,7 +92,7 @@ func getNodeOptions(x ast.Node, commentoptionmap map[string]*options.Option) ([]
 		return true
 	})
 
-	return nodeOptions, manual
+	return
 }
 
 // setTypeOptions sets the options for all fields in the given types.
