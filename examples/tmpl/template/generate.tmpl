@@ -35,6 +35,6 @@ func {{$function.Name}}({{template "JoinParameters" $function.To}}, {{template "
 			{{- end -}}
 		{{- end -}}
 	{{- end}}
-	{{end}}}
 	{{if $function.Options.Error}}return{{end}}
+	{{end}}}
 {{end}}
