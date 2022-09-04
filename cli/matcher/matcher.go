@@ -2,6 +2,8 @@
 package matcher
 
 import (
+	"strings"
+
 	"github.com/reedom/copygen/cli/models"
 )
 
@@ -37,7 +39,7 @@ func match(function models.Function, toField *models.Field, fromField *models.Fi
 	if function.Options.Manual {
 		switch {
 		case toField.Options.Automatch || fromField.Options.Automatch:
-			automatch(toField, fromField)
+			automatch(toField, fromField, false)
 
 		case toField.Options.Tag != "":
 			tagmatch(toField, fromField)
@@ -46,14 +48,21 @@ func match(function models.Function, toField *models.Field, fromField *models.Fi
 			mapmatch(toField, fromField)
 		}
 	} else {
-		automatch(toField, fromField)
+		automatch(toField, fromField, function.Options.NoCase)
 	}
 }
 
 // automatch automatically matches the fields of a fromType to a toType by name and definition.
 // automatch is used when no `map` or `tag` options apply to a field.
-func automatch(toField, fromField *models.Field) {
-	if toField.Name == fromField.Name &&
+func automatch(toField, fromField *models.Field, noCase bool) {
+	fromFieldName := fromField.Name
+	toFieldName := toField.Name
+	if noCase {
+		fromFieldName = strings.ToLower(fromFieldName)
+		toFieldName = strings.ToLower(toFieldName)
+	}
+
+	if toFieldName == fromFieldName &&
 		((toField.FullDefinition() == fromField.FullDefinition() ||
 			toField.FullDefinition()[1:] == fromField.FullDefinition() ||
 			toField.FullDefinition() == fromField.FullDefinition()[1:]) ||

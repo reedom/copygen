@@ -40,6 +40,9 @@ func NewFieldOption(category, text string) (*Option, error) {
 	case CategoryDepth:
 		option, err = ParseDepth(text)
 
+	case CategoryNoCase:
+		option, err = ParseNoCase(text)
+
 	case CategoryPreProcess:
 		option, err = ParsePreProcess(text)
 

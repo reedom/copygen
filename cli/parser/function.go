@@ -23,7 +23,7 @@ func (p *Parser) parseFunctions(copygen *ast.InterfaceType) ([]models.Function, 
 		method := p.Config.SetupPkg.TypesInfo.Defs[copygen.Methods.List[i].Names[0]]
 
 		// create models.Type objects.
-		fieldoptions, manual, preProcess, postProcess := getNodeOptions(copygen.Methods.List[i], p.Options.CommentOptionMap)
+		fieldoptions, manual, noCase, preProcess, postProcess := getNodeOptions(copygen.Methods.List[i], p.Options.CommentOptionMap)
 		fieldoptions = append(fieldoptions, p.Options.ConvertOptions...)
 		parsed, err := parseTypes(method.(*types.Func))
 		if err != nil {
@@ -52,6 +52,7 @@ func (p *Parser) parseFunctions(copygen *ast.InterfaceType) ([]models.Function, 
 				Custom:      customoptionmap,
 				Manual:      manual,
 				Error:       parsed.retError,
+				NoCase:      noCase,
 				PreProcess:  preProcess,
 				PostProcess: postProcess,
 			},
@@ -65,7 +66,7 @@ func (p *Parser) parseFunctions(copygen *ast.InterfaceType) ([]models.Function, 
 
 // getNodeOptions gets an ast.Node options from its comments.
 // To reduce overhead, it also returns whether a manual matcher is used.
-func getNodeOptions(x ast.Node, commentoptionmap map[string]*options.Option) (nodeOptions []*options.Option, manual bool, preProcess, postProcess string) {
+func getNodeOptions(x ast.Node, commentoptionmap map[string]*options.Option) (nodeOptions []*options.Option, manual, noCase bool, preProcess, postProcess string) {
 	nodeOptions = make([]*options.Option, 0, len(commentoptionmap))
 
 	ast.Inspect(x, func(node ast.Node) bool {
@@ -81,6 +82,8 @@ func getNodeOptions(x ast.Node, commentoptionmap map[string]*options.Option) (no
 				// specifying a match option disables automatching by default.
 				if options.IsMatchOptionCategory(commentoptionmap[comment.Text].Category) {
 					manual = true
+				} else if commentoptionmap[comment.Text].Category == options.CategoryNoCase {
+					noCase = true
 				} else if commentoptionmap[comment.Text].Category == options.CategoryPreProcess {
 					preProcess = commentoptionmap[comment.Text].Value.(string)
 				} else if commentoptionmap[comment.Text].Category == options.CategoryPostProcess {

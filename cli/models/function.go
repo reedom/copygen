@@ -13,6 +13,7 @@ type FunctionOptions struct {
 	Custom      map[string][]string // The custom options of a function (map[option]values).
 	Manual      bool                // Whether the function uses a manual matcher (as opposed to an Automatcher).
 	Error       bool                // Whether the function handles error object.
+	NoCase      bool                // Whether the automatcher should compare field names case insensitively.
 	PreProcess  string              // Ident to call before the field copy process.
 	PostProcess string              // Ident to call after the field copy process.
 }

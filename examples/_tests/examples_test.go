@@ -96,6 +96,11 @@ var (
 			wantpath: "_tests/multi/copygen.go",
 		},
 		{
+			name:     "nocase",
+			ymlpath:  "_tests/nocase/setup.yml",
+			wantpath: "_tests/nocase/copygen.go",
+		},
+		{
 			name:     "strip",
 			ymlpath:  "_tests/strip/setup/setup.yml",
 			wantpath: "_tests/strip/copygen.go",
