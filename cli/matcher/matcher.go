@@ -38,14 +38,14 @@ func Match(gen *models.Generator) error {
 func match(function models.Function, toField *models.Field, fromField *models.Field) {
 	if function.Options.Manual {
 		switch {
-		case toField.Options.Automatch || fromField.Options.Automatch:
-			automatch(toField, fromField, false)
+		case toField.Options.Map != "" || fromField.Options.Map != "":
+			mapmatch(toField, fromField)
 
 		case toField.Options.Tag != "":
 			tagmatch(toField, fromField)
 
-		default:
-			mapmatch(toField, fromField)
+		case toField.Options.Automatch || fromField.Options.Automatch:
+			automatch(toField, fromField, function.Options.NoCase)
 		}
 	} else {
 		automatch(toField, fromField, function.Options.NoCase)
@@ -82,6 +82,10 @@ func mapmatch(toField, fromField *models.Field) {
 	if fromField.Options.Map != "" && toField.FullNameWithoutPointer("") == fromField.Options.Map {
 		fromField.To = toField
 		toField.From = fromField
+
+		// prevent parallel matching.
+		fromField.Fields = make([]*models.Field, 0)
+		toField.Fields = make([]*models.Field, 0)
 	}
 }
 
@@ -91,5 +95,9 @@ func tagmatch(toField, fromField *models.Field) {
 	if toField.Options.Tag != "" && toField.Options.Tag == fromField.Options.Tag {
 		fromField.To = toField
 		toField.From = fromField
+
+		// prevent parallel matching.
+		fromField.Fields = make([]*models.Field, 0)
+		toField.Fields = make([]*models.Field, 0)
 	}
 }
